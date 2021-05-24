@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Anime Search</string>
+    <string name="anime_title_1">GTO</string>
+    <string name="anime_title_2">Dororo</string>
+    <string name="anime_title_3">AT</string>
+    <string name="anime_title_4">Claymore</string>
+    <string name="anime_title_5">Berserk</string>
+    <string name="anime_title_6">Akame</string>
+    <string name="anime_subject_1">GTO GTO</string>
+    <string name="anime_subject_2">Dororo Dororo</string>
+    <string name="anime_subject_3">AT AT</string>
+    <string name="anime_subject_4">Claymore Claymore</string>
+    <string name="anime_subject_5">Berserk Berserk</string>
+    <string name="anime_subject_6">Akame Akame</string>
+    <string name="anime_rank_1">10</string>
+    <string name="anime_rank_2">10</string>
+    <string name="anime_rank_3">10</string>
+    <string name="anime_rank_4">10</string>
+    <string name="anime_rank_5">10</string>
+    <string name="anime_rank_6">10</string>
+</resources>
