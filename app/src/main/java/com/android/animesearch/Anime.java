@@ -8,15 +8,16 @@ public class Anime {
     private int mTitleNameID;
     private int mTitleSubjectId;
     private int mTitleRating;
-    private Date mTitleStartDate;
+    private int mTitleStartDate;
     private int mTitlePicture;
 
 
-    public Anime (int titleNameID, int titleSubjectId, int titleRating, int titlePicture) {
+    public Anime (int titleNameID, int titleSubjectId, int titleRating, int titlePicture, int titleStartDate) {
         mTitleNameID = titleNameID;
         mTitleSubjectId = titleSubjectId;
         mTitleRating = titleRating;
         mTitlePicture = titlePicture;
+        mTitleStartDate = titleStartDate;
     }
 
     public int getTitleNameID() {
@@ -41,5 +42,21 @@ public class Anime {
 
     public void setTitleRating(int titleRating) {
         mTitleRating = titleRating;
+    }
+
+    public int getTitleStartDate() {
+        return mTitleStartDate;
+    }
+
+    public void setTitleStartDate(int titleStartDate) {
+        mTitleStartDate = titleStartDate;
+    }
+
+    public int getTitlePicture() {
+        return mTitlePicture;
+    }
+
+    public void setTitlePicture(int titlePicture) {
+        mTitlePicture = titlePicture;
     }
 }
