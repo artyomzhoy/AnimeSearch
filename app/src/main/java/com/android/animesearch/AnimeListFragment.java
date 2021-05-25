@@ -10,28 +10,33 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AnimeListFragment extends Fragment {
 
-    private RecyclerView mCrimeRecyclerView;
+    private RecyclerView mAnimeRecyclerView;
     private AnimeAdapter mAdapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_anime_list, container, false);
-        mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.anime_recycler_view);
-        mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAnimeRecyclerView = (RecyclerView) view.findViewById(R.id.anime_recycler_view);
+        mAnimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        updateUI();
         return view;
     }
 
-    private class AnimeHolder extends RecyclerView.ViewHolder {
+    private static class AnimeHolder extends RecyclerView.ViewHolder {
         public AnimeHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_anime, parent,false));
         }
     }
 
     private class AnimeAdapter extends RecyclerView.Adapter<AnimeHolder> {
+
         private List<Anime> mAnimeList;
 
         public AnimeAdapter(List<Anime> animeList) {
@@ -41,7 +46,7 @@ public class AnimeListFragment extends Fragment {
         @Override
         public AnimeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            return new AnimeHolder(layoutInflater,parent);
+            return new AnimeHolder(layoutInflater, parent);
         }
 
         @Override
@@ -53,9 +58,23 @@ public class AnimeListFragment extends Fragment {
         public int getItemCount() {
             return mAnimeList.size();
         }
+        public void setAnimeList(List<Anime> anime) {
+            mAnimeList = anime;
+        }
     }
 
     private void updateUI() {
+        List<Anime> anime = convertArrToList(AnimeListActivity.mAnimeBank);
+        if (mAdapter == null) {
+            mAdapter = new AnimeAdapter(anime);
+            mAnimeRecyclerView.setAdapter(mAdapter);
+        } else {
+            mAdapter.setAnimeList(anime);
+            mAdapter.notifyDataSetChanged();
+        }
 
+    }
+    public <Anime> List<Anime> convertArrToList (Anime[] array) {
+        return Arrays.stream(array).collect(Collectors.toList());
     }
 }
