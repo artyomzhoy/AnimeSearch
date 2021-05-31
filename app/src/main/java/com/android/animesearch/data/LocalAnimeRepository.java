@@ -1,7 +1,6 @@
 package com.android.animesearch.data;
 
 import com.android.animesearch.Anime;
-import com.android.animesearch.AnimeListActivity;
 import com.android.animesearch.R;
 
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.android.animesearch;
+package com.android.animesearch.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.animesearch.Anime;
+import com.android.animesearch.domain.LoadPopularAnimeUseCase;
+import com.android.animesearch.R;
 import com.android.animesearch.data.LocalAnimeRepository;
 
 import java.util.List;
@@ -19,13 +22,12 @@ public class AnimeListFragment extends Fragment {
     private RecyclerView mAnimeRecyclerView;
     private AnimeAdapter mAdapter;
 
-    private final AnimeListViewModel vm = new AnimeListViewModel(new LocalAnimeRepository());
+    private final AnimeListViewModel vm = new AnimeListViewModel(new LoadPopularAnimeUseCase(new LocalAnimeRepository()));
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_anime_list, container, false);
         mAnimeRecyclerView = (RecyclerView) view.findViewById(R.id.anime_recycler_view);
         mAnimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         updateUI();
         return view;
     }
