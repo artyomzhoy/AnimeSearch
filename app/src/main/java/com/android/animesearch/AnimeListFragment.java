@@ -6,20 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.android.animesearch.data.LocalAnimeRepository;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AnimeListFragment extends Fragment {
 
     private RecyclerView mAnimeRecyclerView;
     private AnimeAdapter mAdapter;
+
+    private final AnimeListViewModel vm = new AnimeListViewModel(new LocalAnimeRepository());
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_anime_list, container, false);
@@ -88,7 +88,7 @@ public class AnimeListFragment extends Fragment {
     }
 
     private void updateUI() {
-        List<Anime> anime = Arrays.asList(AnimeListActivity.mAnimeBank);
+        List<Anime> anime = vm.getAnimeList();
         if (mAdapter == null) {
             mAdapter = new AnimeAdapter(anime);
             mAnimeRecyclerView.setAdapter(mAdapter);
