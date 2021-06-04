@@ -19,6 +19,10 @@ import java.util.List;
 
 public class AnimeListFragment extends Fragment {
 
+    public static AnimeListFragment newInstance() {
+        return new AnimeListFragment();
+    }
+
     private RecyclerView mAnimeRecyclerView;
     private AnimeAdapter mAdapter;
 

@@ -24,4 +24,6 @@
     <string name="anime_date_4">05.3.2021</string>
     <string name="anime_date_5">10.10.2222</string>
     <string name="anime_date_6">31.03.2007</string>
+    <string name="search_button">Search</string>
+    <string name="search_view_hint">Enter the keywords for your query</string>
 </resources>
