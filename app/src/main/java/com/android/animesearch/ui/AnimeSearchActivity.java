@@ -6,8 +6,11 @@ import com.android.animesearch.SingleFragmentActivity;
 
 public class AnimeSearchActivity extends SingleFragmentActivity {
 
+    private static final String ARG_SEARCH_TEXT = "search_text";
+
     @Override
     protected Fragment createFragment() {
-        return AnimeSearchFragment.newInstance();
+        String searchText = (String) getIntent().getSerializableExtra(ARG_SEARCH_TEXT);
+        return AnimeSearchFragment.newInstance(searchText);
     }
 }

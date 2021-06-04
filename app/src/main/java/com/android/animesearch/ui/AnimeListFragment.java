@@ -11,24 +11,41 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.animesearch.Anime;
+import com.android.animesearch.data.AnimeRepository;
 import com.android.animesearch.domain.LoadPopularAnimeUseCase;
 import com.android.animesearch.R;
 import com.android.animesearch.data.LocalAnimeRepository;
+import com.android.animesearch.domain.SearchUseCase;
 
 import java.util.List;
 
 public class AnimeListFragment extends Fragment {
 
-    public static AnimeListFragment newInstance() {
-        return new AnimeListFragment();
+    private static final String ARG_SEARCH_TEXT = "search_text";
+
+
+    public static AnimeListFragment newInstance(String searchText) {
+
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_SEARCH_TEXT, searchText);
+
+        AnimeListFragment fragment = new AnimeListFragment();
+        fragment.setArguments(args);
+
+        return fragment;
     }
 
     private RecyclerView mAnimeRecyclerView;
     private AnimeAdapter mAdapter;
 
-    private final AnimeListViewModel vm = new AnimeListViewModel(new LoadPopularAnimeUseCase(new LocalAnimeRepository()));
+    private AnimeListViewModel vm;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        AnimeRepository repository = new LocalAnimeRepository();
+        LoadPopularAnimeUseCase load = new LoadPopularAnimeUseCase(repository);
+        SearchUseCase search = new SearchUseCase(repository);
+        vm = new AnimeListViewModel(load, search);
+
         View view = inflater.inflate(R.layout.fragment_anime_list, container, false);
         mAnimeRecyclerView = (RecyclerView) view.findViewById(R.id.anime_recycler_view);
         mAnimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -56,7 +73,7 @@ public class AnimeListFragment extends Fragment {
 
         public void bind(Anime anime) {
             mAnime = anime;
-            mAnimeTitle.setText(mAnime.getTitleNameID());
+            mAnimeTitle.setText(mAnime.getTitleName());
             mAnimeSubject.setText(mAnime.getTitleSubjectId());
             mAnimeRating.setText((int) mAnime.getTitleRating());
             mAnimeDate.setText(mAnime.getTitleStartDate());
@@ -94,7 +111,7 @@ public class AnimeListFragment extends Fragment {
     }
 
     private void updateUI() {
-        List<Anime> anime = vm.getAnimeList();
+        List<Anime> anime = vm.getAnimeList(getSearchArg());
         if (mAdapter == null) {
             mAdapter = new AnimeAdapter(anime);
             mAnimeRecyclerView.setAdapter(mAdapter);
@@ -104,7 +121,8 @@ public class AnimeListFragment extends Fragment {
         }
 
     }
-    /*public <Anime> List<Anime> convertArrToList (Anime[] array) {
-        return Arrays.stream(array).collect(Collectors.toList());
-    } */
+
+    private String getSearchArg() {
+        return getArguments().getString(ARG_SEARCH_TEXT);
+    }
 }

@@ -1,31 +1,27 @@
 package com.android.animesearch;
 
-import java.io.File;
-import java.util.Date;
-
 public class Anime {
 
-    private int mTitleNameID;
+    private String mTitleName;
     private int mTitleSubjectId;
     private int mTitleRating;
     private int mTitleStartDate;
     private int mTitlePicture;
 
-
-    public Anime (int titleNameID, int titleSubjectId, int titleRating, int titlePicture, int titleStartDate) {
-        mTitleNameID = titleNameID;
+    public Anime(String titleName, int titleSubjectId, int titleRating, int titlePicture, int titleStartDate) {
+        mTitleName = titleName;
         mTitleSubjectId = titleSubjectId;
         mTitleRating = titleRating;
         mTitlePicture = titlePicture;
         mTitleStartDate = titleStartDate;
     }
 
-    public int getTitleNameID() {
-        return mTitleNameID;
+    public String getTitleName() {
+        return mTitleName;
     }
 
-    public void setTitleNameID(int titleNameID) {
-        mTitleNameID = titleNameID;
+    public void setTitleName(String titleName) {
+        mTitleName = titleName;
     }
 
     public int getTitleSubjectId() {
