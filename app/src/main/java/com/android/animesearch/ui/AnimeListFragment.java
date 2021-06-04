@@ -27,7 +27,7 @@ public class AnimeListFragment extends Fragment {
     public static AnimeListFragment newInstance(String searchText) {
 
         Bundle args = new Bundle();
-        args.putSerializable(ARG_SEARCH_TEXT, searchText);
+        args.putString(ARG_SEARCH_TEXT, searchText);
 
         AnimeListFragment fragment = new AnimeListFragment();
         fragment.setArguments(args);

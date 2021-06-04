@@ -19,6 +19,7 @@ public class AnimeListViewModel extends ViewModel {
     ) {
         super();
         this.mLoadPopularAnimeUseCase = loadPopularAnimeUseCase;
+        this.mSearchUseCase = searchUseCase;
     }
 
     public List<Anime> getAnimeList() {
