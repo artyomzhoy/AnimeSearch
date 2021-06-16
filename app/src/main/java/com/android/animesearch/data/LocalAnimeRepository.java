@@ -9,15 +9,12 @@ import java.util.List;
 public class LocalAnimeRepository implements AnimeRepository {
 
     public static Anime[] mAnimeBank = new Anime[] {
-            new Anime("w", R.string.anime_subject_1, R.string.anime_rank_1, R.drawable.ic_baseline_whatshot_24, R.string.anime_date_1),
-            new Anime("1", R.string.anime_subject_2, R.string.anime_rank_2,R.drawable.ic_baseline_whatshot_24, R.string.anime_date_2),
-            new Anime("2", R.string.anime_subject_3, R.string.anime_rank_3,R.drawable.ic_baseline_whatshot_24, R.string.anime_date_3),
-            new Anime("afgasgf", R.string.anime_subject_4, R.string.anime_rank_4,R.drawable.ic_baseline_whatshot_24, R.string.anime_date_4),
-            new Anime("sjrt", R.string.anime_subject_5, R.string.anime_rank_5,R.drawable.ic_baseline_whatshot_24, R.string.anime_date_5),
-            new Anime("asdgasg", R.string.anime_subject_6, R.string.anime_rank_6,R.drawable.ic_baseline_whatshot_24, R.string.anime_date_6),
-            new Anime("asdgasg", R.string.anime_subject_6, R.string.anime_rank_6,R.drawable.ic_baseline_whatshot_24, R.string.anime_date_6),
-            new Anime("asdgasg", R.string.anime_subject_6, R.string.anime_rank_6,R.drawable.ic_baseline_whatshot_24, R.string.anime_date_6),
-            new Anime("asdgasg", R.string.anime_subject_6, R.string.anime_rank_6,R.drawable.ic_baseline_whatshot_24, R.string.anime_date_6)
+            new Anime("w", "w", "w", R.drawable.ic_baseline_whatshot_24, "w"),
+            new Anime("1", "1", "1",R.drawable.ic_baseline_whatshot_24, "1"),
+            new Anime("2", "2", "2",R.drawable.ic_baseline_whatshot_24, "2"),
+            new Anime("afgasgf", "afgasgf", "afgasgf",R.drawable.ic_baseline_whatshot_24, "afgasgf"),
+            new Anime("sjrt", "sjrt", "sjrt",R.drawable.ic_baseline_whatshot_24, "sjrt"),
+            new Anime("asdgasg", "asdgasg", "asdgasg",R.drawable.ic_baseline_whatshot_24, "asdgasg")
     };
 
     @Override

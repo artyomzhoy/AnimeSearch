@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="?android:listSeparatorTextViewStyle"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -32,13 +31,13 @@
         app:layout_constraintTop_toBottomOf="@+id/anime_title" />
 
     <TextView
-        android:id="@+id/anime_rating"
+        android:id="@+id/anime_score"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Anime Rating"
+        android:text="Anime Score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/crime_solved"
         app:layout_constraintTop_toBottomOf="@+id/anime_subject" />
@@ -55,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/crime_solved"
-        app:layout_constraintTop_toBottomOf="@+id/anime_rating" />
+        app:layout_constraintTop_toBottomOf="@+id/anime_score" />
 
     <ImageView
         android:id="@+id/crime_solved"

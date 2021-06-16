@@ -3,15 +3,15 @@ package com.android.animesearch;
 public class Anime {
 
     private String mTitleName;
-    private int mTitleSubjectId;
-    private int mTitleRating;
-    private int mTitleStartDate;
+    private String mTitleSubjectId;
+    private String mTitleScore;
+    private String mTitleStartDate;
     private int mTitlePicture;
 
-    public Anime(String titleName, int titleSubjectId, int titleRating, int titlePicture, int titleStartDate) {
+    public Anime(String titleName, String titleSubjectId, String titleScore, int titlePicture, String titleStartDate) {
         mTitleName = titleName;
         mTitleSubjectId = titleSubjectId;
-        mTitleRating = titleRating;
+        mTitleScore = titleScore;
         mTitlePicture = titlePicture;
         mTitleStartDate = titleStartDate;
     }
@@ -24,27 +24,27 @@ public class Anime {
         mTitleName = titleName;
     }
 
-    public int getTitleSubjectId() {
+    public String getTitleSubjectId() {
         return mTitleSubjectId;
     }
 
-    public void setTitleSubjectId(int titleSubjectId) {
+    public void setTitleSubjectId(String titleSubjectId) {
         mTitleSubjectId = titleSubjectId;
     }
 
-    public double getTitleRating() {
-        return mTitleRating;
+    public String getTitleScore() {
+        return mTitleScore;
     }
 
-    public void setTitleRating(int titleRating) {
-        mTitleRating = titleRating;
+    public void setTitleScore(String titleScore) {
+        mTitleScore = titleScore;
     }
 
-    public int getTitleStartDate() {
+    public String getTitleStartDate() {
         return mTitleStartDate;
     }
 
-    public void setTitleStartDate(int titleStartDate) {
+    public void setTitleStartDate(String titleStartDate) {
         mTitleStartDate = titleStartDate;
     }
 
