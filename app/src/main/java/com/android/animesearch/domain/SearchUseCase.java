@@ -16,7 +16,7 @@ public class SearchUseCase {
     }
 
     public List<Anime> execute(String text) {
-        List<Anime> list = repository.getAnime();
+        List<Anime> list = repository.getAnime(text);
         List<Anime> result = new LinkedList<>();
 
         for (int i = 0; i < list.size(); i++) {

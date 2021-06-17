@@ -14,8 +14,8 @@ public class ApiSearchUseCase {
         this.repository = repository;
     }
 
-    public List<Anime> execute() {
-        List<Anime> list = repository.getAnime();
+    public List<Anime> execute(String searchText) {
+        List<Anime> list = repository.getAnime(searchText);
         return list;
     }
 }

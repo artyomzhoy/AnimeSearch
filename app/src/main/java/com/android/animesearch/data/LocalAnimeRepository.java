@@ -18,7 +18,7 @@ public class LocalAnimeRepository implements AnimeRepository {
     };
 
     @Override
-    public List<Anime> getAnime() {
+    public List<Anime> getAnime(String searchText) {
         return Arrays.asList(mAnimeBank);
     }
 }

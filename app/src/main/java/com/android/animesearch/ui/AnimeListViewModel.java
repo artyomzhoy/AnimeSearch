@@ -16,13 +16,13 @@ public class AnimeListViewModel extends ViewModel {
     private ApiSearchUseCase mApiSearchUseCase;
 
     public AnimeListViewModel(
-//            LoadPopularAnimeUseCase loadPopularAnimeUseCase,
-//            SearchUseCase searchUseCase
+            LoadPopularAnimeUseCase loadPopularAnimeUseCase,
+            SearchUseCase searchUseCase,
             ApiSearchUseCase apiSearchUseCase
     ) {
         super();
-//        this.mLoadPopularAnimeUseCase = loadPopularAnimeUseCase;
-//        this.mSearchUseCase = searchUseCase;
+        this.mLoadPopularAnimeUseCase = loadPopularAnimeUseCase;
+        this.mSearchUseCase = searchUseCase;
         this.mApiSearchUseCase = apiSearchUseCase;
     }
 
@@ -34,7 +34,7 @@ public class AnimeListViewModel extends ViewModel {
         return mSearchUseCase.execute(filter);
     }
 
-    public List<Anime> getApiAnimeList() {
-        return mApiSearchUseCase.execute();
+    public List<Anime> getApiAnimeList(String filter) {
+        return mApiSearchUseCase.execute(filter);
     }
 }

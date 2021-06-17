@@ -15,7 +15,7 @@ public class LoadPopularAnimeUseCase {
     }
 
     public List<Anime> execute() {
-        List<Anime> list = repository.getAnime();
+        List<Anime> list = repository.getAnime("");
         return list;
     }
 }

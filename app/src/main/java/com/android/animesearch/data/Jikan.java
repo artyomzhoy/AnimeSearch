@@ -1,7 +1,10 @@
-package com.android.animesearch;
+package com.android.animesearch.data;
 
 import android.net.Uri;
 import android.util.Log;
+
+import com.android.animesearch.Anime;
+import com.android.animesearch.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,19 +45,16 @@ public class Jikan {
             connection.disconnect();
         }
     }
+
     public String getUrlString(String urlSpec) throws IOException {
         return new String(getUrlBytes(urlSpec));
     }
 
     public List<Anime> fetchItems(String searchText) {
-
-//        List<Anime> animeList = new ArrayList<>();
-
         try {
             String url = Uri.parse("https://api.jikan.moe/v3/search/anime")
                     .buildUpon()
                     .appendQueryParameter("q", searchText)
-//                    .appendQueryParameter("limit", "3")
                     .appendQueryParameter("format", "json")
                     .appendQueryParameter("nojsoncallback", "1")
                     .appendQueryParameter("extras", "url_s")

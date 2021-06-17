@@ -1,7 +1,7 @@
 package com.android.animesearch.ui;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +12,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.animesearch.Anime;
-import com.android.animesearch.Jikan;
 import com.android.animesearch.data.AnimeRepository;
 import com.android.animesearch.data.RemoteAnimeRepository;
 import com.android.animesearch.domain.ApiSearchUseCase;
-import com.android.animesearch.domain.LoadPopularAnimeUseCase;
 import com.android.animesearch.R;
-import com.android.animesearch.data.LocalAnimeRepository;
+import com.android.animesearch.domain.LoadPopularAnimeUseCase;
 import com.android.animesearch.domain.SearchUseCase;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class AnimeListFragment extends Fragment {
 
     private static final String ARG_SEARCH_TEXT = "search_text";
-
+    private Executor executor = Executors.newCachedThreadPool();
 
     public static AnimeListFragment newInstance(String searchText) {
 
@@ -43,38 +42,26 @@ public class AnimeListFragment extends Fragment {
     private RecyclerView mAnimeRecyclerView;
     private AnimeAdapter mAdapter;
     private AnimeListViewModel vm;
-    private List<Anime> mAnime = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        new JikanItemsTask().execute();
     }
 
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        AnimeRepository repository = new LocalAnimeRepository();
-//        LoadPopularAnimeUseCase load = new LoadPopularAnimeUseCase(repository);
-//        SearchUseCase search = new SearchUseCase(repository);
-//        vm = new AnimeListViewModel(load, search);
-
         AnimeRepository repository = new RemoteAnimeRepository();
+        LoadPopularAnimeUseCase load = new LoadPopularAnimeUseCase(repository);
+        SearchUseCase search = new SearchUseCase(repository);
         ApiSearchUseCase apiSearch = new ApiSearchUseCase(repository);
-        vm = new AnimeListViewModel(apiSearch);
+
+        vm = new AnimeListViewModel(load, search, apiSearch);
 
         View view = inflater.inflate(R.layout.fragment_anime_list, container, false);
-        mAnimeRecyclerView = (RecyclerView) view.findViewById(R.id.anime_recycler_view);
+        mAnimeRecyclerView = view.findViewById(R.id.anime_recycler_view);
         mAnimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
         return view;
-    }
-
-    private void setupAdapter() {
-        if (isAdded()) {
-            mAnimeRecyclerView.setAdapter(new AnimeAdapter(mAnime));
-        }
     }
 
     private static class AnimeHolder extends RecyclerView.ViewHolder {
@@ -87,7 +74,7 @@ public class AnimeListFragment extends Fragment {
 
 
         public AnimeHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.list_item_anime, parent,false));
+            super(inflater.inflate(R.layout.list_item_anime, parent, false));
 
             mAnimeTitle = (TextView) itemView.findViewById(R.id.anime_title);
             mAnimeSubject = (TextView) itemView.findViewById(R.id.anime_subject);
@@ -135,33 +122,37 @@ public class AnimeListFragment extends Fragment {
     }
 
     private void updateUI() {
-        List<Anime> anime = vm.getApiAnimeList();
-        if (mAdapter == null) {
-            mAdapter = new AnimeAdapter(anime);
-//            mAnimeRecyclerView.setAdapter(mAdapter);
-            mAnimeRecyclerView.setAdapter(new AnimeAdapter(mAnime));
-        } else {
-            mAdapter.setAnimeList(anime);
-            mAdapter.notifyDataSetChanged();
-        }
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                List < Anime > anime = vm.getApiAnimeList(getSearchArg());
+                updateList(anime);
+            }
+        };
 
+        executor.execute(runnable);
+    }
+
+    private void updateList(List<Anime> list) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (mAdapter == null) {
+                    mAdapter = new AnimeAdapter(list);
+                    mAnimeRecyclerView.setAdapter(mAdapter);
+                    mAnimeRecyclerView.setAdapter(new AnimeAdapter(list));
+                } else {
+                    mAdapter.setAnimeList(list);
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        };
+
+        Handler mainHandler = new Handler(requireContext().getMainLooper());
+        mainHandler.post(runnable);
     }
 
     public String getSearchArg() {
         return getArguments().getString(ARG_SEARCH_TEXT);
-    }
-
-    private class JikanItemsTask extends AsyncTask<Void, Void, List<Anime>> {
-
-        @Override
-        protected List<Anime> doInBackground(Void... params) {
-            return new Jikan().fetchItems(getSearchArg());
-        }
-
-        @Override
-        protected void onPostExecute(List<Anime> items) {
-            mAnime = items;
-            setupAdapter();
-        }
     }
 }
