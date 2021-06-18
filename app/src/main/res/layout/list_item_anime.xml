@@ -29,6 +29,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Anime Subject"
+        android:maxLines="4"
+        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/anime_picture"
         app:layout_constraintTop_toBottomOf="@+id/anime_title" />

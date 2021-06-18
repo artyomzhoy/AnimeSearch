@@ -1,19 +1,32 @@
 package com.android.animesearch;
 
-public class Anime {
+import java.io.Serializable;
+import java.util.UUID;
 
+public class Anime implements Serializable {
+
+    private UUID mUUID;
     private String mTitleName;
     private String mTitleSubjectId;
     private String mTitleScore;
     private String mTitleStartDate;
     private String mTitlePicture;
 
+    public Anime(UUID id){
+        mUUID = id;
+    }
+
     public Anime(String titleName, String titleSubjectId, String titleScore, String titlePicture, String titleStartDate) {
+        this(UUID.randomUUID());
         mTitleName = titleName;
         mTitleSubjectId = titleSubjectId;
         mTitleScore = titleScore;
         mTitlePicture = titlePicture;
         mTitleStartDate = titleStartDate;
+    }
+
+    public UUID getId() {
+        return mUUID;
     }
 
     public String getTitleName() {
@@ -55,4 +68,5 @@ public class Anime {
     public void setTitlePicture(String titlePicture) {
         mTitlePicture = titlePicture;
     }
+
 }

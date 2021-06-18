@@ -1,5 +1,6 @@
 package com.android.animesearch.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -21,6 +22,8 @@ import com.android.animesearch.domain.LoadPopularAnimeUseCase;
 import com.android.animesearch.domain.SearchUseCase;
 import com.squareup.picasso.Picasso;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -66,7 +69,7 @@ public class AnimeListFragment extends Fragment {
         return view;
     }
 
-    private static class AnimeHolder extends RecyclerView.ViewHolder {
+    private class AnimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private Anime mAnime;
         private TextView mAnimeTitle;
@@ -94,8 +97,13 @@ public class AnimeListFragment extends Fragment {
             mAnimeSubject.setText(mAnime.getTitleSubjectId());
             mAnimeScore.setText(mAnime.getTitleScore());
             mAnimeDate.setText(mAnime.getTitleStartDate());
-//            mAnimePicture.setImageDrawable(Picasso.get().load(mAnime.getTitlePicture()).into(???));
             Picasso.get().load(mAnime.getTitlePicture()).into(mAnimePicture);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getActivity(), AnimeActivity.class);
+            startActivity(intent);
         }
     }
 

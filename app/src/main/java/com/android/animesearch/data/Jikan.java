@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.android.animesearch.Anime;
-import com.android.animesearch.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
