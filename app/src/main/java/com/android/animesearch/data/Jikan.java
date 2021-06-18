@@ -79,12 +79,13 @@ public class Jikan {
 
             JSONObject animeJsonObject = resultsJsonArray.getJSONObject(i);
 
-            Anime anime = new Anime("random", "random", "random", R.drawable.ic_baseline_whatshot_24,"random");
+            Anime anime = new Anime("random", "random", "random", "random","random");
             animeList.add(anime);
             anime.setTitleName(animeJsonObject.getString("title"));
             anime.setTitleSubjectId(animeJsonObject.getString("synopsis"));
             anime.setTitleScore(animeJsonObject.getString("score"));
             anime.setTitleStartDate(animeJsonObject.getString("start_date"));
+            anime.setTitlePicture(animeJsonObject.getString("image_url"));
 
         }
     }

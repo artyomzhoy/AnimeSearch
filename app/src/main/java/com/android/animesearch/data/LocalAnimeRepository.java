@@ -9,12 +9,12 @@ import java.util.List;
 public class LocalAnimeRepository implements AnimeRepository {
 
     public static Anime[] mAnimeBank = new Anime[] {
-            new Anime("w", "w", "w", R.drawable.ic_baseline_whatshot_24, "w"),
-            new Anime("1", "1", "1",R.drawable.ic_baseline_whatshot_24, "1"),
-            new Anime("2", "2", "2",R.drawable.ic_baseline_whatshot_24, "2"),
-            new Anime("afgasgf", "afgasgf", "afgasgf",R.drawable.ic_baseline_whatshot_24, "afgasgf"),
-            new Anime("sjrt", "sjrt", "sjrt",R.drawable.ic_baseline_whatshot_24, "sjrt"),
-            new Anime("asdgasg", "asdgasg", "asdgasg",R.drawable.ic_baseline_whatshot_24, "asdgasg")
+            new Anime("w", "w", "w", "w", "w"),
+            new Anime("1", "1", "1","1", "1"),
+            new Anime("2", "2", "2","2", "2"),
+            new Anime("afgasgf", "afgasgf", "afgasgf","afgasgf", "afgasgf"),
+            new Anime("sjrt", "sjrt", "sjrt","sjrt", "sjrt"),
+            new Anime("asdgasg", "asdgasg", "asdgasg","asdgasg", "asdgasg")
     };
 
     @Override

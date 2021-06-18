@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="?android:listSeparatorTextViewStyle"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/constraintLayout"
@@ -10,25 +11,39 @@
         android:id="@+id/anime_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:text="Anime Title"
+        android:textSize="17sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/crime_solved"
+        app:layout_constraintStart_toEndOf="@+id/anime_picture"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/anime_subject"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:text="Anime Subject"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/crime_solved"
+        app:layout_constraintStart_toEndOf="@+id/anime_picture"
         app:layout_constraintTop_toBottomOf="@+id/anime_title" />
+
+    <ImageView
+        android:id="@+id/star"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/anime_start_date"
+        app:layout_constraintEnd_toStartOf="@+id/anime_score"
+        app:layout_constraintStart_toEndOf="@+id/anime_picture"
+        app:layout_constraintTop_toTopOf="@+id/anime_score"
+        app:srcCompat="@drawable/ic_baseline_star_24" />
 
     <TextView
         android:id="@+id/anime_score"
@@ -36,28 +51,27 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:textStyle="bold"
         android:text="Anime Score"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/crime_solved"
+        app:layout_constraintStart_toEndOf="@+id/star"
         app:layout_constraintTop_toBottomOf="@+id/anime_subject" />
 
     <TextView
         android:id="@+id/anime_start_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Anime Start Date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/crime_solved"
+        app:layout_constraintStart_toEndOf="@+id/anime_picture"
         app:layout_constraintTop_toBottomOf="@+id/anime_score" />
 
     <ImageView
-        android:id="@+id/crime_solved"
+        android:id="@+id/anime_picture"
         android:layout_width="100dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -65,8 +79,7 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_whatshot_24" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

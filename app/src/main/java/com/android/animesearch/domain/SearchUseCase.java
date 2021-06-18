@@ -15,14 +15,14 @@ public class SearchUseCase {
         this.repository = repository;
     }
 
-    public List<Anime> execute(String text) {
-        List<Anime> list = repository.getAnime(text);
+    public List<Anime> execute(String searchText) {
+        List<Anime> list = repository.getAnime(searchText);
         List<Anime> result = new LinkedList<>();
 
         for (int i = 0; i < list.size(); i++) {
             Anime a = list.get(i);
 
-            if (a.getTitleName().contains(text)) {
+            if (a.getTitleName().contains(searchText)) {
                 result.add(a);
             }
         }

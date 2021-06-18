@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import com.android.animesearch.domain.ApiSearchUseCase;
 import com.android.animesearch.R;
 import com.android.animesearch.domain.LoadPopularAnimeUseCase;
 import com.android.animesearch.domain.SearchUseCase;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -52,13 +54,13 @@ public class AnimeListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         AnimeRepository repository = new RemoteAnimeRepository();
         LoadPopularAnimeUseCase load = new LoadPopularAnimeUseCase(repository);
+        ApiSearchUseCase api = new ApiSearchUseCase(repository);
         SearchUseCase search = new SearchUseCase(repository);
-        ApiSearchUseCase apiSearch = new ApiSearchUseCase(repository);
 
-        vm = new AnimeListViewModel(load, search, apiSearch);
+        vm = new AnimeListViewModel(load, search, api);
 
         View view = inflater.inflate(R.layout.fragment_anime_list, container, false);
-        mAnimeRecyclerView = view.findViewById(R.id.anime_recycler_view);
+        mAnimeRecyclerView = (RecyclerView) view.findViewById(R.id.anime_recycler_view);
         mAnimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
         return view;
@@ -71,15 +73,19 @@ public class AnimeListFragment extends Fragment {
         private TextView mAnimeSubject;
         private TextView mAnimeScore;
         private TextView mAnimeDate;
+        private ImageView mAnimePicture;
+        private ImageView mStar;
 
 
         public AnimeHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.list_item_anime, parent, false));
+            super(inflater.inflate(R.layout.list_item_anime, parent,false));
 
             mAnimeTitle = (TextView) itemView.findViewById(R.id.anime_title);
             mAnimeSubject = (TextView) itemView.findViewById(R.id.anime_subject);
             mAnimeScore = (TextView) itemView.findViewById(R.id.anime_score);
             mAnimeDate = (TextView) itemView.findViewById(R.id.anime_start_date);
+            mAnimePicture = (ImageView) itemView.findViewById(R.id.anime_picture);
+            mStar = (ImageView) itemView.findViewById(R.id.star);
         }
 
         public void bind(Anime anime) {
@@ -88,6 +94,8 @@ public class AnimeListFragment extends Fragment {
             mAnimeSubject.setText(mAnime.getTitleSubjectId());
             mAnimeScore.setText(mAnime.getTitleScore());
             mAnimeDate.setText(mAnime.getTitleStartDate());
+//            mAnimePicture.setImageDrawable(Picasso.get().load(mAnime.getTitlePicture()).into(???));
+            Picasso.get().load(mAnime.getTitlePicture()).into(mAnimePicture);
         }
     }
 

@@ -6,9 +6,9 @@ public class Anime {
     private String mTitleSubjectId;
     private String mTitleScore;
     private String mTitleStartDate;
-    private int mTitlePicture;
+    private String mTitlePicture;
 
-    public Anime(String titleName, String titleSubjectId, String titleScore, int titlePicture, String titleStartDate) {
+    public Anime(String titleName, String titleSubjectId, String titleScore, String titlePicture, String titleStartDate) {
         mTitleName = titleName;
         mTitleSubjectId = titleSubjectId;
         mTitleScore = titleScore;
@@ -48,11 +48,11 @@ public class Anime {
         mTitleStartDate = titleStartDate;
     }
 
-    public int getTitlePicture() {
+    public String getTitlePicture() {
         return mTitlePicture;
     }
 
-    public void setTitlePicture(int titlePicture) {
+    public void setTitlePicture(String titlePicture) {
         mTitlePicture = titlePicture;
     }
 }

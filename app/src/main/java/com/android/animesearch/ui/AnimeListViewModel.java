@@ -34,7 +34,7 @@ public class AnimeListViewModel extends ViewModel {
         return mSearchUseCase.execute(filter);
     }
 
-    public List<Anime> getApiAnimeList(String filter) {
-        return mApiSearchUseCase.execute(filter);
+    public List<Anime> getApiAnimeList(String searchText) {
+        return mApiSearchUseCase.execute(searchText);
     }
 }
