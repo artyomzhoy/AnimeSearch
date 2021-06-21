@@ -22,9 +22,11 @@ import com.android.animesearch.domain.LoadPopularAnimeUseCase;
 import com.android.animesearch.domain.SearchUseCase;
 import com.squareup.picasso.Picasso;
 
-import java.util.Collections;
-import java.util.Comparator;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -79,7 +81,6 @@ public class AnimeListFragment extends Fragment {
         private ImageView mAnimePicture;
         private ImageView mStar;
 
-
         public AnimeHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_anime, parent,false));
 
@@ -91,13 +92,25 @@ public class AnimeListFragment extends Fragment {
             mStar = (ImageView) itemView.findViewById(R.id.star);
         }
 
-        public void bind(Anime anime) {
+        public void bind(Anime anime) throws ParseException {
+
+            final String OLD_FORMAT = "yyyy-MM-dd'T'HH:mm:ssXXX";
+            final String NEW_FORMAT = "MMMM d, yyyy";
+
             mAnime = anime;
             mAnimeTitle.setText(mAnime.getTitleName());
             mAnimeSubject.setText(mAnime.getTitleSubjectId());
             mAnimeScore.setText(mAnime.getTitleScore());
-            mAnimeDate.setText(mAnime.getTitleStartDate());
             Picasso.get().load(mAnime.getTitlePicture()).into(mAnimePicture);
+
+            String oldDateString = mAnime.getTitleStartDate();
+            String newDateString;
+
+            SimpleDateFormat formatter = new SimpleDateFormat(OLD_FORMAT, Locale.ENGLISH);
+            Date date = formatter.parse(oldDateString);
+            formatter.applyPattern(NEW_FORMAT);
+            newDateString = formatter.format(date);
+            mAnimeDate.setText(newDateString);
         }
 
         @Override
@@ -124,7 +137,11 @@ public class AnimeListFragment extends Fragment {
         @Override
         public void onBindViewHolder(AnimeListFragment.AnimeHolder holder, int position) {
             Anime anime = mAnimeList.get(position);
-            holder.bind(anime);
+            try {
+                holder.bind(anime);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
