@@ -86,6 +86,8 @@ public class AnimeListFragment extends Fragment {
         public AnimeHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_anime, parent,false));
 
+            itemView.setOnClickListener(this);
+
             mAnimeTitle = (TextView) itemView.findViewById(R.id.anime_title);
             mAnimeSubject = (TextView) itemView.findViewById(R.id.anime_subject);
             mAnimeScore = (TextView) itemView.findViewById(R.id.anime_score);
@@ -117,8 +119,7 @@ public class AnimeListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            UUID animeId = mAnime.getId();
-            Intent intent = AnimeActivity.newIntent(getActivity(), animeId);
+            Intent intent = AnimeActivity.newIntent(getActivity(), mAnime);
             startActivity(intent);
         }
     }
