@@ -17,11 +17,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.UUID;
 
 public class AnimeFragment extends Fragment {
 
-    private static final String ARG_ANIME_ID = "anime_id";
+    private static final String ARG_ANIME = "anime";
 
     private Anime mAnime;
     private TextView mAnimeTitle;
@@ -34,9 +33,9 @@ public class AnimeFragment extends Fragment {
     final String OLD_FORMAT = "yyyy-MM-dd'T'HH:mm:ssXXX";
     final String NEW_FORMAT = "MMMM d, yyyy";
 
-    public static AnimeFragment newInstance(UUID animeId) {
+    public static AnimeFragment newInstance(Anime anime) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_ANIME_ID, animeId);
+        args.putSerializable(ARG_ANIME, anime);
 
         AnimeFragment fragment = new AnimeFragment();
         fragment.setArguments(args);
@@ -45,7 +44,8 @@ public class AnimeFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAnime = (Anime) getArguments().getSerializable(ARG_ANIME_ID);
+        assert getArguments() != null;
+        mAnime = (Anime) getArguments().getSerializable(ARG_ANIME);
     }
 
 
