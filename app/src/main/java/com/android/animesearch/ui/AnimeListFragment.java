@@ -20,6 +20,7 @@ import com.android.animesearch.domain.ApiSearchUseCase;
 import com.android.animesearch.R;
 import com.android.animesearch.domain.LoadPopularAnimeUseCase;
 import com.android.animesearch.domain.SearchUseCase;
+import com.android.animesearch.ui.selectedAnime.AnimeActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -27,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -115,7 +117,8 @@ public class AnimeListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(getActivity(), AnimeActivity.class);
+            UUID animeId = mAnime.getId();
+            Intent intent = AnimeActivity.newIntent(getActivity(), animeId);
             startActivity(intent);
         }
     }

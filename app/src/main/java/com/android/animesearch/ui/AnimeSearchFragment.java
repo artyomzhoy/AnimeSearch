@@ -24,7 +24,7 @@ public class AnimeSearchFragment extends Fragment {
     private final AnimeSearchViewModel vm = new AnimeSearchViewModel(new SearchUseCase(new LocalAnimeRepository()));
 
     public static AnimeSearchFragment newInstance(String searchText) {
-return new AnimeSearchFragment();
+        return new AnimeSearchFragment();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -1,27 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/anime_fragment"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/selected_anime_picture"
+        android:layout_width="350dp"
+        android:layout_height="450dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/selected_anime_title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="Selected_anime_title"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_anime_picture" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center">
+    <TextView
+        android:id="@+id/selected_anime_score"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="Selected_anime_score"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/selected_anime_star"
+        app:layout_constraintTop_toBottomOf="@+id/selected_anime_title"
+        app:layout_constraintBottom_toTopOf="@+id/selected_anime_start_date"/>
 
-            <ImageView
-                android:id="@+id/anime_picture"
-                android:layout_width="350dp"
-                android:layout_height="450dp"/>
-        </LinearLayout>
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/selected_anime_star"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_anime_title"
+        app:layout_constraintEnd_toStartOf="@+id/selected_anime_score"
+        app:layout_constraintBottom_toTopOf="@+id/selected_anime_start_date"
+        app:srcCompat="@drawable/ic_baseline_star_24" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/selected_anime_start_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Selected_anime_start_date"
+        app:layout_constraintTop_toBottomOf="@+id/selected_anime_score"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/selected_anime_subject"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Selected_anime_subject"
+        app:layout_constraintTop_toBottomOf="@+id/selected_anime_start_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

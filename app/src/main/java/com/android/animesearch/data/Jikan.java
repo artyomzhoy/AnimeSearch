@@ -78,7 +78,7 @@ public class Jikan {
 
             JSONObject animeJsonObject = resultsJsonArray.getJSONObject(i);
 
-            Anime anime = new Anime("random", "random", "random", "random","random");
+            Anime anime = new Anime();
             animeList.add(anime);
             anime.setTitleName(animeJsonObject.getString("title"));
             anime.setTitleSubjectId(animeJsonObject.getString("synopsis"));

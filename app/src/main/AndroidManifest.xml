@@ -23,6 +23,10 @@
         <activity android:name=".ui.AnimeListActivity"
             android:parentActivityName=".ui.AnimeSearchActivity">
         </activity>
+
+        <activity android:name=".ui.selectedAnime.AnimeActivity"
+            android:parentActivityName=".ui.AnimeListActivity">
+        </activity>
     </application>
 
 </manifest>

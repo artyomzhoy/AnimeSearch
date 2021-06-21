@@ -12,18 +12,22 @@ public class Anime implements Serializable {
     private String mTitleStartDate;
     private String mTitlePicture;
 
+    public Anime() {
+        this(UUID.randomUUID());
+    }
+
     public Anime(UUID id){
         mUUID = id;
     }
 
-    public Anime(String titleName, String titleSubjectId, String titleScore, String titlePicture, String titleStartDate) {
-        this(UUID.randomUUID());
-        mTitleName = titleName;
-        mTitleSubjectId = titleSubjectId;
-        mTitleScore = titleScore;
-        mTitlePicture = titlePicture;
-        mTitleStartDate = titleStartDate;
-    }
+//    public Anime(String titleName, String titleSubjectId, String titleScore, String titlePicture, String titleStartDate) {
+//        this(UUID.randomUUID());
+//        mTitleName = titleName;
+//        mTitleSubjectId = titleSubjectId;
+//        mTitleScore = titleScore;
+//        mTitlePicture = titlePicture;
+//        mTitleStartDate = titleStartDate;
+//    }
 
     public UUID getId() {
         return mUUID;
